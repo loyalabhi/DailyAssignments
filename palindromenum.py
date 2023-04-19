@@ -6,7 +6,7 @@ ori=n
 while(n):
     rem=n%10
     rev=rev*10+rem
-    n/=10
+    n//=10
 if (rev==ori):
     print("Number is palindrome.",ori)
 else:
