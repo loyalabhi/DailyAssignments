@@ -1,6 +1,6 @@
 n=int(input("Enter a number : "))
-rev
-rem
+rev=0
+rem=0
 ori=n
 while(n!=0):
     rem=n%10
