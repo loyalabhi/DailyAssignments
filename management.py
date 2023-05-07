@@ -1,10 +1,10 @@
 import mysql.connector
-mydb=mysql.connector.connect(host='localhost',user='root',password='Murali@@12',database='inventory_management')
+mydb=mysql.connector.connect(host='localhost',user='root',password='Abhi@2222',database='inventory_management')
 print(mydb.connection_id)
 cur=mydb.cursor()
-#cur.execute('create database Inventory_Management')
+cur.execute('create database Inventory_Management')
 
-'''t='create table manufacure(manufacture_id int,item varchar(30),no_of_items_required int,defective int)'
+t='create table manufacure(manufacture_id int,item varchar(30),no_of_items_required int,defective int)'
 cur.execute(t)
 
 u='create table goods(goods_id int,item varchar(30),company varchar(30),manufacure_date date)'
@@ -42,7 +42,7 @@ mydb.commit()
 
 a='delete from inventory_management.manufacure where defective = 1'
 cur.execute(a)
-mydb.commit()'''
+mydb.commit()
 
 
 a='update manufacure set manufacture_id=700 where sale.store="MYKIDS store"'
@@ -50,14 +50,14 @@ cur.execute(a)
 mydb.commit()
 
 
-#a="select sale.profit_margin from goods inner join sale on sale.salesitem=goods.item where sale.store='mycar store' and goods.company='ss export company'"
-#cur.execute(a)
-#display=cur.fetchall()
-#print(display)
+a="select sale.profit_margin from goods inner join sale on sale.salesitem=goods.item where sale.store='mycar store' and goods.company='ss export company'"
+cur.execute(a)
+display=cur.fetchall()
+print(display)
 
 
-#a='select item from goods where item  like "%wooden chair" and manufacure_date < "2023-5-1" '
-#cur.execute(a)
-#display=cur.fetchall()
-#for x in display:
- #   print(x)
+a='select item from goods where item  like "%wooden chair" and manufacure_date < "2023-5-1" '
+cur.execute(a)
+display=cur.fetchall()
+for x in display:
+    print(x)
