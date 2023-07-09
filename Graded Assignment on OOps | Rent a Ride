@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 class Driver {
     String carModel;
@@ -15,24 +16,47 @@ class Driver {
 
 public class RentARide {
     public static void main(String[] args) {
-        // Sample Input
-        int rideDistance = 43;
-        String requestedCar = "Sedan";
+        Scanner scanner = new Scanner(System.in);
+
+        // Get customer ride distance
+        System.out.print("Enter customer ride distance (in km): ");
+        int rideDistance = scanner.nextInt();
+
+        // Get requested car model
+        System.out.print("Enter requested car model: ");
+        String requestedCar = scanner.next();
 
         // Create a list of drivers
         List<Driver> drivers = new ArrayList<>();
-        drivers.add(new Driver("Sedan", 4.0, 500));
-        drivers.add(new Driver("Hatchback", 4.3, 1000));
-        drivers.add(new Driver("5-Seater", 4.8, 200));
-        drivers.add(new Driver("Sedan", 4.1, 700));
-        drivers.add(new Driver("Hatchback", 4.7, 430));
+
+        // Get the number of drivers
+        System.out.print("Enter the number of drivers: ");
+        int numDrivers = scanner.nextInt();
+
+        // Get driver details
+        for (int i = 0; i < numDrivers; i++) {
+            System.out.println("Enter details for Driver " + (i + 1) + ":");
+
+            System.out.print("Car Model: ");
+            String carModel = scanner.next();
+
+            System.out.print("Rating: ");
+            double rating = scanner.nextDouble();
+
+            System.out.print("Distance From Customer (in meters): ");
+            int distanceFromCustomer = scanner.nextInt();
+
+            drivers.add(new Driver(carModel, rating, distanceFromCustomer));
+        }
+
+        scanner.close();
 
         // Find the eligible drivers
         Driver selectedDriver = null;
         int closestDistance = Integer.MAX_VALUE;
 
         for (Driver driver : drivers) {
-            if (driver.carModel.equals(requestedCar) && driver.rating >= 4.0 && driver.distanceFromCustomer < closestDistance) {
+            if (driver.carModel.equalsIgnoreCase(requestedCar) && driver.rating >= 4.0 && driver.distanceFromCustomer < closestDistance) {
                 selectedDriver = driver;
                 closestDistance = driver.distanceFromCustomer;
             }
