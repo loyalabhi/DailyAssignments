@@ -1,0 +1,54 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Driver {
+    String carModel;
+    double rating;
+    int distanceFromCustomer;
+
+    public Driver(String carModel, double rating, int distanceFromCustomer) {
+        this.carModel = carModel;
+        this.rating = rating;
+        this.distanceFromCustomer = distanceFromCustomer;
+    }
+}
+
+public class RentARide {
+    public static void main(String[] args) {
+        // Sample Input
+        int rideDistance = 43;
+        String requestedCar = "Sedan";
+
+        // Create a list of drivers
+        List<Driver> drivers = new ArrayList<>();
+        drivers.add(new Driver("Sedan", 4.0, 500));
+        drivers.add(new Driver("Hatchback", 4.3, 1000));
+        drivers.add(new Driver("5-Seater", 4.8, 200));
+        drivers.add(new Driver("Sedan", 4.1, 700));
+        drivers.add(new Driver("Hatchback", 4.7, 430));
+
+        // Find the eligible drivers
+        Driver selectedDriver = null;
+        int closestDistance = Integer.MAX_VALUE;
+
+        for (Driver driver : drivers) {
+            if (driver.carModel.equals(requestedCar) && driver.rating >= 4.0 && driver.distanceFromCustomer < closestDistance) {
+                selectedDriver = driver;
+                closestDistance = driver.distanceFromCustomer;
+            }
+        }
+
+        // Handle case when no eligible driver is found
+        if (selectedDriver == null) {
+            System.out.println("No driver available for the requested car model.");
+            return;
+        }
+
+        // Calculate the total charge
+        int totalCharge = rideDistance * 8;
+
+        // Print the output
+        System.out.println("Driver " + selectedDriver.carModel + " will get you to the destination.");
+        System.out.println("Your charge will be Rs " + totalCharge + ".");
+    }
+}
